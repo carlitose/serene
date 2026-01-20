@@ -15,20 +15,21 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.serene.app",
+      "bundleIdentifier": "com.carlogiuseppesergi.sereneapp",
       "infoPlist": {
         "NSCameraUsageDescription": "Serene needs camera access to send photos in messages",
         "NSMicrophoneUsageDescription": "Serene needs microphone access to send voice messages",
         "NSPhotoLibraryUsageDescription": "Serene needs photo library access to send photos in messages",
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "appleTeamId": "8GJ7L6JT93"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "package": "com.serene.app",
+      "package": "com.carlosergi.serene",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
