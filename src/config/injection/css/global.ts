@@ -83,7 +83,7 @@ svg[aria-label*="New post"] {
   display: none !important;
 }
 
-/* Bottom navigation - hide specific tabs */
+/* Fallback per tablist (vecchia struttura) */
 div[role="tablist"] a[href="/"],
 div[role="tablist"] a[href="/explore/"],
 div[role="tablist"] a[href="/reels/"] {

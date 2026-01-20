@@ -9,8 +9,11 @@ interface UseInjectionProps {
 
 export function useInjection({ injector, pageType }: UseInjectionProps) {
   const injectedScript = useMemo(() => {
+    console.log('🎨 [USE_INJECTION] Creating injection script for pageType:', pageType);
     const payload = injector.getPayload(pageType);
-    return injector.buildScript(payload);
+    const script = injector.buildScript(payload);
+    console.log('🎨 [USE_INJECTION] Script created, length:', script.length, 'chars');
+    return script;
   }, [injector, pageType]);
 
   return { injectedScript };

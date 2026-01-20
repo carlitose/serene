@@ -4,6 +4,10 @@ import { WebView, WebViewNavigation } from 'react-native-webview';
 import BlockedScreen from './BlockedScreen';
 import { APP_CONFIG } from '@/config/app.config';
 
+// User-Agent Safari per evitare blocchi Instagram
+const SAFARI_USER_AGENT =
+  'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1';
+
 interface Props {
   webViewRef: React.RefObject<WebView | null>;
   url: string;
@@ -63,6 +67,8 @@ export default function WebViewContainer({
         javaScriptEnabled={true}
         domStorageEnabled={true}
         startInLoadingState={true}
+        // User-Agent per evitare blocchi Instagram
+        userAgent={SAFARI_USER_AGENT}
         // Appearance
         contentMode="mobile"
         renderLoading={() => (

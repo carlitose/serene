@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "scheme": "serene",
     "splash": {
       "image": "./assets/splash-icon.png",
@@ -19,7 +19,8 @@
       "infoPlist": {
         "NSCameraUsageDescription": "Serene needs camera access to send photos in messages",
         "NSMicrophoneUsageDescription": "Serene needs microphone access to send voice messages",
-        "NSPhotoLibraryUsageDescription": "Serene needs photo library access to send photos in messages"
+        "NSPhotoLibraryUsageDescription": "Serene needs photo library access to send photos in messages",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -42,6 +43,14 @@
           "root": "./src/app"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {
+        "root": "./src/app"
+      },
+      "eas": {
+        "projectId": "140f9105-f4db-48ac-8cf1-de9f009ed233"
+      }
+    }
   }
 }

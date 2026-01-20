@@ -22,6 +22,8 @@ export function useWebViewController({
   const [isLoading, setIsLoading] = useState(true);
   const [currentUrl, setCurrentUrl] = useState(config.initialUrl);
 
+  console.log('📱 [WEBVIEW_CONTROLLER] init with initialUrl:', config.initialUrl);
+
   // Compose hooks (SRP)
   const { state: blockState, setBlocked, clearBlocked } = useBlockState();
 
@@ -46,13 +48,19 @@ export function useWebViewController({
   // Extended navigation handler that tracks current URL
   const handleNavigationChange = useCallback(
     (navState: { url: string; loading?: boolean }) => {
+      console.log('📍 [CURRENT_URL_CHANGE]', {
+        from: currentUrl,
+        to: navState.url,
+        loading: navState.loading,
+      });
+
       setCurrentUrl(navState.url);
       if (navState.loading !== undefined) {
         setIsLoading(navState.loading);
       }
       baseHandleNavigationChange(navState);
     },
-    [baseHandleNavigationChange]
+    [baseHandleNavigationChange, currentUrl]
   );
 
   // Handle messages from WebView (JS injection)
@@ -61,7 +69,13 @@ export function useWebViewController({
       try {
         const message: WebViewMessage = JSON.parse(event.nativeEvent.data);
 
+        console.log('💬 [JS_MESSAGE_RECEIVED]', message);
+
         if (message.type === 'blocked_navigation' && message.url) {
+          console.log('🔴 [JS_INTERCEPTOR_BLOCKED]', {
+            blockedUrl: message.url,
+            willNavigateTo: config.initialUrl,
+          });
           setBlocked(message.url);
           navigateTo(config.initialUrl);
         }
@@ -74,10 +88,12 @@ export function useWebViewController({
 
   // Handle load start/end for loading state
   const handleLoadStart = useCallback(() => {
+    console.log('⏳ [LOAD_START]');
     setIsLoading(true);
   }, []);
 
   const handleLoadEnd = useCallback(() => {
+    console.log('✅ [LOAD_END]');
     setIsLoading(false);
   }, []);
 
@@ -95,6 +111,7 @@ export function useWebViewController({
     reload,
     navigateTo,
     clearBlock: () => {
+      console.log('🧹 [CLEAR_BLOCK] → navigating to', config.initialUrl);
       clearBlocked();
       navigateTo(config.initialUrl);
     },

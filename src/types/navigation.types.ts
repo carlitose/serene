@@ -1,4 +1,4 @@
-export type PageType = 'messages' | 'search' | 'profile' | 'unknown';
+export type PageType = 'messages' | 'search' | 'profile' | 'settings' | 'unknown';
 export type BlockMode = 'hard' | 'soft';
 export type EvaluationResult = 'allowed' | 'restricted' | 'blocked';
 

@@ -9,15 +9,39 @@ export const URL_RULES: UrlRule[] = [
     pageType: 'messages',
   },
 
-  // ALLOWED - Account settings
+  // ALLOWED - Account settings (usa 'settings' per non iniettare PROFILE_CSS)
   {
     pattern: /^\/accounts\//,
     result: 'allowed',
     blockMode: 'soft',
-    pageType: 'profile',
+    pageType: 'settings',
   },
 
-  // RESTRICTED - Search (con CSS injection aggressiva)
+  // ALLOWED - Home (per redirect post-login)
+  {
+    pattern: /^\/$/,
+    result: 'allowed',
+    blockMode: 'soft',
+    pageType: 'home',
+  },
+
+  // ALLOWED - URL interni Instagram (referer_frame, etc.)
+  {
+    pattern: /^\/common\//,
+    result: 'allowed',
+    blockMode: 'soft',
+    pageType: 'internal',
+  },
+
+  // RESTRICTED - Search page (PRIMA di /explore/ generico!)
+  {
+    pattern: /^\/explore\/search/,
+    result: 'restricted',
+    blockMode: 'soft',
+    pageType: 'search',
+  },
+
+  // RESTRICTED - Search alternativo
   {
     pattern: /^\/search/,
     result: 'restricted',
@@ -31,13 +55,6 @@ export const URL_RULES: UrlRule[] = [
     result: 'restricted',
     blockMode: 'soft',
     pageType: 'profile',
-  },
-
-  // BLOCKED (hard) - Home feed
-  {
-    pattern: /^\/$/,
-    result: 'blocked',
-    blockMode: 'hard',
   },
 
   // BLOCKED (hard) - Reels

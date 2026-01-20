@@ -32,4 +32,10 @@ div[class*="popular"] {
 
 /* Keep only user search results visible */
 /* This is done by hiding everything except user results */
+
+/* ===== INSTAGRAM BOTTOM NAVBAR ===== */
+/* Nascondere SOLO in search, non in messaggi */
+div[role="navigation"] {
+  display: none !important;
+}
 `;

@@ -1,0 +1,14 @@
+{
+  "name": "serene-css-tester",
+  "version": "1.0.0",
+  "description": "Test CSS injection for Serene app",
+  "main": "test.js",
+  "scripts": {
+    "test:messages": "node test.js messages",
+    "test:search": "node test.js search",
+    "test:both": "node test.js both"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}
