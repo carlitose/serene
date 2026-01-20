@@ -33,10 +33,8 @@ a[href="/activity/"] {
   display: none !important;
 }
 
-/* Stories Bar */
-section > main > div:first-child > div:first-child {
-  display: none !important;
-}
+/* Stories Bar - RIMOSSO: troppo aggressivo, nascondeva contenuto profili */
+/* Usare selettori più specifici se necessario */
 
 [role="menu"][aria-label*="Stories"] {
   display: none !important;

@@ -10,9 +10,11 @@ export const SEARCH_NAVBAR_HIDER_JS = `
   function hideNavbar() {
     var navbars = document.querySelectorAll('div[role="navigation"]');
     navbars.forEach(function(el) {
-      if (el.style.display !== 'none') {
-        el.style.display = 'none';
-        console.log('[NAVBAR_HIDER] Hidden navbar element');
+      var currentDisplay = window.getComputedStyle(el).display;
+      if (currentDisplay !== 'none') {
+        // Usa setProperty con !important per sovrascrivere gli stili di Instagram
+        el.style.setProperty('display', 'none', 'important');
+        console.log('[NAVBAR_HIDER] Hidden navbar element (was: ' + currentDisplay + ')');
 
         // Invia messaggio a React Native
         try {

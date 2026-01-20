@@ -22,22 +22,22 @@ export class InjectorService implements IInjector {
     unknown: ['GLOBAL_CSS'],
   };
 
-  // JS base per tutte le pagine
-  private baseJsModules: string[] = [MUTATION_OBSERVER_JS, NAVIGATION_INTERCEPTOR_JS];
-
-  // JS aggiuntivi per pagine specifiche
-  private jsMap: Record<PageType, string[]> = {
-    messages: this.baseJsModules,
-    search: [...this.baseJsModules, SEARCH_NAVBAR_HIDER_JS], // Nasconde la navbar di Instagram
-    profile: this.baseJsModules,
-    settings: this.baseJsModules,
-    unknown: this.baseJsModules,
-  };
-
   getPayload(pageType: PageType): InjectionPayload {
     console.log('💉 [INJECTOR] getPayload for pageType:', pageType);
     console.log('💉 [INJECTOR] CSS modules:', this.cssNames[pageType] ?? this.cssNames.unknown);
-    const jsModules = this.jsMap[pageType] ?? this.baseJsModules;
+
+    // JS base per tutte le pagine
+    const baseJs = [MUTATION_OBSERVER_JS, NAVIGATION_INTERCEPTOR_JS];
+
+    // JS aggiuntivi per pageType specifici
+    let jsModules: string[];
+    if (pageType === 'search') {
+      jsModules = [...baseJs, SEARCH_NAVBAR_HIDER_JS];
+      console.log('💉 [INJECTOR] Adding SEARCH_NAVBAR_HIDER_JS for search page');
+    } else {
+      jsModules = baseJs;
+    }
+
     console.log('💉 [INJECTOR] JS modules count:', jsModules.length);
     return {
       css: this.cssMap[pageType] ?? this.cssMap.unknown,
