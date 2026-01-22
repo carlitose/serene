@@ -69,6 +69,8 @@ export default function WebViewContainer({
         startInLoadingState={true}
         // User-Agent per evitare blocchi Instagram
         userAgent={SAFARI_USER_AGENT}
+        // Web Inspector per debugging (solo in development)
+        webviewDebuggingEnabled={__DEV__}
         // Appearance
         contentMode="mobile"
         renderLoading={() => (

@@ -3,7 +3,7 @@ import { PageType } from '@/types/navigation.types';
 import { InjectionPayload } from '@/types/injection.types';
 
 import { GLOBAL_CSS, MESSAGES_CSS, SEARCH_CSS, PROFILE_CSS } from '@/config/injection/css';
-import { MUTATION_OBSERVER_JS, NAVIGATION_INTERCEPTOR_JS, SEARCH_NAVBAR_HIDER_JS } from '@/config/injection/js';
+import { MUTATION_OBSERVER_JS, NAVIGATION_INTERCEPTOR_JS, SEARCH_NAVBAR_HIDER_JS, MESSAGES_BACK_BUTTON_HIDER_JS } from '@/config/injection/js';
 
 export class InjectorService implements IInjector {
   private cssMap: Record<PageType, string[]> = {
@@ -34,6 +34,9 @@ export class InjectorService implements IInjector {
     if (pageType === 'search') {
       jsModules = [...baseJs, SEARCH_NAVBAR_HIDER_JS];
       console.log('💉 [INJECTOR] Adding SEARCH_NAVBAR_HIDER_JS for search page');
+    } else if (pageType === 'messages') {
+      jsModules = [...baseJs, MESSAGES_BACK_BUTTON_HIDER_JS];
+      console.log('💉 [INJECTOR] Adding MESSAGES_BACK_BUTTON_HIDER_JS for messages page');
     } else {
       jsModules = baseJs;
     }
