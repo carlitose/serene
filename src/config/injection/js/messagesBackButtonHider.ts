@@ -1,13 +1,25 @@
 export const MESSAGES_BACK_BUTTON_HIDER_JS = `
 // ============================================
-// SERENE - Messages Back Button Hider
-// Nasconde il back button nella pagina messaggi
+// SERENE - Messages Back Button Hider (Smart)
+// Nasconde il back button SOLO in /direct/inbox/, non nelle conversazioni
 // ============================================
 
 (function() {
   console.log('[BACK_HIDER] Initializing...');
 
   function hideBackButton() {
+    // Controlla l'URL corrente
+    var currentPath = window.location.pathname;
+
+    // Nascondere SOLO se siamo nella inbox (/direct/inbox/)
+    // NON nascondere se siamo in una conversazione (/direct/t/...)
+    if (!currentPath.includes('/direct/inbox/')) {
+      console.log('[BACK_HIDER] Not in inbox (path:', currentPath, '), skipping');
+      return;
+    }
+
+    console.log('[BACK_HIDER] In inbox, hiding back button');
+
     // Cerca SVG con aria-label "Indietro" o "Back" e nasconde il parent div[role="button"]
     var svgSelectors = [
       'svg[aria-label="Indietro"]',
