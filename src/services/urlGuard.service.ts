@@ -27,6 +27,23 @@ export class UrlGuardService implements IUrlGuard {
 
     const { path, host } = parseUrl(url);
 
+    // Consentire solo il callback HTTPS di code entry sugli host ufficiali.
+    const callbackHost = host.toLowerCase();
+    if (
+      (callbackHost === 'instagram.com' || callbackHost === 'www.instagram.com') &&
+      /^\/auth_platform\/codeentry\/?$/.test(path) &&
+      new URL(url).protocol === 'https:'
+    ) {
+      return {
+        url,
+        path,
+        result: 'allowed',
+        blockMode: 'soft',
+        pageType: 'unknown',
+        shouldBlock: false,
+      };
+    }
+
     // Permettere Facebook Instagram login sync (necessario per OAuth)
     if (host.includes('facebook.com') && path.startsWith('/instagram')) {
       console.log('🛡️ [URL_GUARD] evaluate:', path, '→ ALLOWED (Facebook OAuth)');
