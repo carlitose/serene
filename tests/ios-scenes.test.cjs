@@ -23,7 +23,7 @@ test('project registers the scene plugin, paid team and distinguishable build', 
   const { expo } = require('../app.json');
   assert.ok(expo.plugins.includes('./plugins/with-ios-scenes'));
   assert.equal(expo.ios.appleTeamId, '735BVBTSDR');
-  assert.equal(expo.ios.buildNumber, '2');
+  assert.equal(expo.ios.buildNumber, '3');
   assert.equal(expo.ios.bundleIdentifier, 'com.carlogiuseppesergi.sereneapp');
   assert.equal(expo.scheme, 'serene');
 });
