@@ -22,7 +22,8 @@
         "NSPhotoLibraryUsageDescription": "Serene needs photo library access to send photos in messages",
         "ITSAppUsesNonExemptEncryption": false
       },
-      "appleTeamId": "8GJ7L6JT93"
+      "appleTeamId": "735BVBTSDR",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
@@ -43,7 +44,8 @@
         {
           "root": "./src/app"
         }
-      ]
+      ],
+      "./plugins/with-ios-scenes"
     ],
     "extra": {
       "router": {
